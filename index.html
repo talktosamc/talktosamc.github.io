@@ -14,17 +14,16 @@
 
     :root{
 
-      /* Colors */
+      /* Base colors */
       --bg-light: #F8F9F7;
       --bg-dark: #1F2933;
+      --bg-accent: #3F6B5B;
 
       --text-dark: #1F2933;
       --text-light: #FFFFFF;
 
       --border: #D8DDD9;
 
-      /* Accent */
-      --green: #3F6B5B;
       --green-hover: #355C4F;
 
       --max-width: 900px;
@@ -43,8 +42,10 @@
       background:var(--bg-light);
     }
 
+    /* Links */
+
     a{
-      color:var(--green);
+      color:var(--bg-accent);
       text-decoration-thickness:1px;
       text-underline-offset:3px;
     }
@@ -58,20 +59,40 @@
     .container{
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 80px 20px;
+      padding: 90px 20px;
     }
 
-    .dark{
+    /* Section Themes */
+
+    .section--light{
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .section--dark{
       background: var(--bg-dark);
       color: var(--text-light);
     }
 
-    .dark a{
+    .section--dark a{
       color:#9FD0BD;
     }
 
-    .dark a:hover{
+    .section--dark a:hover{
       color:#CBE6DC;
+    }
+
+    .section--accent{
+      background: var(--bg-accent);
+      color: var(--text-light);
+    }
+
+    .section--accent a{
+      color:#E6F4EE;
+    }
+
+    .section--accent a:hover{
+      color:#FFFFFF;
     }
 
     /* Header */
@@ -96,45 +117,44 @@
       letter-spacing:-0.02em;
     }
 
-    .logo span{
-      opacity:.4;
-      font-weight:400;
-      font-size:14px;
-      margin-left:8px;
-    }
-
     /* Typography */
 
     h1{
-      font-size: clamp(36px,5vw,48px);
-      line-height:1.2;
+      font-size: clamp(38px,5vw,52px);
+      line-height:1.15;
       letter-spacing:-0.04em;
-      margin:0 0 24px;
+      margin:0 0 28px;
       font-weight:700;
     }
 
-    h2{
-      font-size: clamp(26px,4vw,32px);
-      line-height:1.3;
-      letter-spacing:-0.02em;
-      margin:0 0 20px;
-      font-weight:600;
+    /* Subheader / Dek */
+
+    .subhead{
+      font-size: clamp(22px,3vw,26px);
+      line-height:1.4;
+      font-weight:500;
+      margin:0 0 10px;
+      max-width: 65ch;
     }
 
-    h3{
-      font-size:20px;
-      margin:32px 0 12px;
+    h2{
+      font-size: clamp(28px,4vw,34px);
+      line-height:1.25;
+      letter-spacing:-0.02em;
+      margin:0 0 22px;
       font-weight:600;
     }
 
     p{
       font-size:18px;
       margin:0 0 18px;
+      max-width: 70ch;
     }
 
     ul{
       padding-left:20px;
       margin:0 0 20px;
+      max-width: 70ch;
     }
 
     li{
@@ -153,6 +173,7 @@
       flex-wrap:wrap;
       gap:10px;
       margin-top:12px;
+      max-width:70ch;
     }
 
     .pill{
@@ -160,20 +181,21 @@
       border:1px solid var(--border);
       font-size:14px;
       background:#fff;
+      color:var(--text-dark);
     }
 
     /* CTA */
 
     .cta{
-      margin-top:24px;
+      margin-top:28px;
     }
 
     .btn{
       display:inline-block;
-      background:var(--green);
+      background:var(--bg-accent);
       color:#fff;
       text-decoration:none;
-      padding:12px 20px;
+      padding:12px 22px;
       font-weight:600;
       border:none;
     }
@@ -187,7 +209,8 @@
 
     .faq-item{
       border-bottom:1px solid var(--border);
-      padding:18px 0;
+      padding:20px 0;
+      max-width:70ch;
     }
 
     .faq-item summary{
@@ -207,7 +230,7 @@
 
     .faq-item summary::after{
       content:"+";
-      font-size:20px;
+      font-size:22px;
       font-weight:400;
     }
 
@@ -245,22 +268,19 @@
 
 <header>
   <div class="header-inner">
-    <div class="logo">
-      LOGO
-      <span>replace</span>
-    </div>
+    <div class="logo">LOGO</div>
   </div>
 </header>
 
 
-<!-- HERO -->
+<!-- HERO (GREEN) -->
 
-<section>
+<section class="section--accent">
   <div class="container">
 
     <h1>Thoughtful done-for-you business development for nonprofit-serving firms</h1>
 
-    <p>
+    <p class="subhead">
       I take responsibility for initiating and following up on outreach—so business development actually happens every week.
     </p>
 
@@ -268,9 +288,9 @@
 </section>
 
 
-<!-- KEEP READING -->
+<!-- KEEP READING (WHITE) -->
 
-<section class="dark">
+<section class="section--light">
   <div class="container">
 
     <h2>Keep reading if…</h2>
@@ -285,9 +305,9 @@
 </section>
 
 
-<!-- OFFER -->
+<!-- OFFER (BLACK) -->
 
-<section>
+<section class="section--dark">
   <div class="container">
 
     <h2>More meetings with the right people—or you don’t pay</h2>
@@ -306,9 +326,9 @@
 </section>
 
 
-<!-- WHY -->
+<!-- WHY (WHITE) -->
 
-<section class="dark">
+<section class="section--light">
   <div class="container">
 
     <h2>Why I can help you</h2>
@@ -325,9 +345,9 @@
 </section>
 
 
-<!-- WHO -->
+<!-- WHO (WHITE) -->
 
-<section>
+<section class="section--light">
   <div class="container">
 
     <h2>Who this is for</h2>
@@ -351,9 +371,9 @@
 </section>
 
 
-<!-- WHERE -->
+<!-- WHERE (BLACK) -->
 
-<section class="dark">
+<section class="section--dark">
   <div class="container">
 
     <h2>Where this leads</h2>
@@ -368,9 +388,9 @@
 </section>
 
 
-<!-- PLAN -->
+<!-- PLAN (GREEN) -->
 
-<section>
+<section class="section--accent">
   <div class="container">
 
     <h2>Next step: Your 60-day Pipeline Plan</h2>
@@ -396,9 +416,9 @@
 </section>
 
 
-<!-- FAQ -->
+<!-- FAQ (WHITE) -->
 
-<section class="dark">
+<section class="section--light">
   <div class="container">
 
     <h2>FAQs</h2>
@@ -406,7 +426,7 @@
     <details class="faq-item">
       <summary>How will we evaluate results?</summary>
       <p>
-        We agree upfront on a clear, measurable target, and review progress regularly during a 60-day engagement. Iteration is expected, especially early on as things ramp up.
+        We agree upfront on a clear, measurable target, and review progress regularly during a 60-day engagement.
       </p>
     </details>
 
@@ -420,28 +440,28 @@
     <details class="faq-item">
       <summary>Will I be locked into a contract?</summary>
       <p>
-        No. Engagements typically run in 60-day intervals and are renewable, with an early-exit option built in.
+        Engagements typically run in 60-day intervals and are renewable, with an early-exit option built in.
       </p>
     </details>
 
     <details class="faq-item">
       <summary>Are you an appointment-setter?</summary>
       <p>
-        No. I focus on lower-volume, higher-touch outreach where targeting, tone, and judgment matter as much as outcomes.
+        I focus on lower-volume, higher-touch outreach where targeting, tone, and judgment matter.
       </p>
     </details>
 
     <details class="faq-item">
       <summary>What are your outreach methods?</summary>
       <p>
-        Methods vary by context, but typically include thoughtful phone calls, highly targeted emails, and coordinated scheduling.
+        Typically include thoughtful calls, targeted emails, and coordinated scheduling.
       </p>
     </details>
 
     <details class="faq-item">
       <summary>Are you available for consulting?</summary>
       <p>
-        Yes, on a limited basis, focused on messaging, targeting, packaging, and re-engaging existing accounts.
+        Yes, on a limited basis, focused on messaging, targeting, and packaging.
       </p>
     </details>
 
@@ -452,9 +472,7 @@
 <footer>
   <div class="footer-inner">
 
-    <div>
-      © <span id="year"></span>
-    </div>
+    <div>© <span id="year"></span></div>
 
     <div>
       <a href="mailto:you@example.com">you@example.com</a>
