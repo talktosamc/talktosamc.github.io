@@ -1,21 +1,553 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>My Website</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Thoughtful done-for-you business development for nonprofit-serving firms. Done weekly. Guaranteed." />
+  <title>Done-for-you Business Development (Nonprofit-Serving Firms)</title>
+
+  <!-- Font (safe + memo-like) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
+    :root{
+      /* Memo palette */
+      --bg: #F8F9F7;
+      --surface: #FFFFFF;
+      --text: #1F2933;
+      --muted: #5A6670;
+      --border: #E3E7E4;
+
+      /* Accent (slate green) */
+      --accent: #3F6B5B;
+      --accentHover: #355C4F;
+      --accentSoft: #E7F0EC;
+
+      --shadow: 0 10px 30px rgba(0,0,0,.05);
+      --radius: 14px;
+      --radiusSm: 10px;
+      --max: 860px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    a{ color:var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover{ color:var(--accentHover); }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 28px 18px 72px;
+    }
+
+    /* Top bar (quiet, warm) */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 10px 0 22px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:600;
+      letter-spacing:-0.02em;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background:var(--accent);
+      box-shadow: 0 0 0 4px var(--accentSoft);
+    }
+    .toplinks{
+      display:flex; gap:14px; flex-wrap:wrap;
+      font-size:14px;
+      color:var(--muted);
+    }
+    .toplinks a{ color:var(--muted); text-decoration:none; border-bottom:1px solid transparent; padding-bottom:2px; }
+    .toplinks a:hover{ color:var(--text); border-bottom-color: var(--border); }
+
+    /* Memo card */
+    .memo{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .memoInner{ padding: 34px 28px; }
+    @media (min-width: 720px){
+      .memoInner{ padding: 44px 56px; }
+    }
+
+    .kicker{
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.18;
+      letter-spacing: -0.04em;
+    }
+    .lead{
+      margin: 0 0 18px;
+      font-size: 18px;
+      color: var(--text);
+      max-width: 60ch;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 18px;
+      margin-bottom: 10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border:1px solid transparent;
+      text-decoration:none;
+      font-weight:600;
+      font-size: 15px;
+      cursor:pointer;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease, color .12s ease;
+      user-select:none;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btnPrimary{
+      background: var(--accent);
+      color: #fff;
+    }
+    .btnPrimary:hover{ background: var(--accentHover); color:#fff; }
+    .btnSecondary{
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btnSecondary:hover{
+      border-color: #cfd6d2;
+      background: #fafbfa;
+      color: var(--text);
+    }
+    .tinyNote{
+      font-size: 13px;
+      color: var(--muted);
+      margin: 8px 0 0;
+    }
+
+    hr{
+      border:0;
+      border-top:1px solid var(--border);
+      margin: 26px 0;
+    }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+    h3{
+      margin: 18px 0 8px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+    p{ margin: 0 0 12px; }
+    ul{ margin: 0 0 12px; padding-left: 18px; }
+    li{ margin: 6px 0; color: var(--text); }
+
+    .callout{
+      background: var(--accentSoft);
+      border: 1px solid rgba(63,107,91,.18);
+      border-radius: var(--radiusSm);
+      padding: 16px 16px;
+      margin: 16px 0;
+    }
+    .callout strong{ font-weight:600; }
+    .callout ul{ margin: 10px 0 0; }
+
+    .grid2{
+      display:grid;
+      gap: 18px;
+    }
+    @media (min-width: 860px){
+      .grid2{ grid-template-columns: 1.1fr .9fr; align-items:start; }
+    }
+
+    .sectionTitle{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom: 8px;
+    }
+    .sectionMark{
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      background: var(--accentSoft);
+      border: 1px solid rgba(63,107,91,.25);
+    }
+
+    .pillRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+    }
+    .pill{
+      display:inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fbfcfb;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* FAQ using details/summary (no JS, calm) */
+    details{
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 10px 0;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:600;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .chev{
+      width: 18px; height: 18px; flex: 0 0 18px;
+      border-radius: 6px;
+      display:grid; place-items:center;
+      background: var(--accentSoft);
+      color: var(--accent);
+      border: 1px solid rgba(63,107,91,.18);
+      font-size: 12px;
+      line-height: 1;
+    }
+    details[open] .chev{ background:#fff; }
+    .faqBody{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    /* Footer */
+    .footer{
+      padding: 18px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Print-friendly feel */
+    @media print{
+      body{ background:#fff; }
+      .topbar{ display:none; }
+      .memo{ box-shadow:none; }
+      a{ color: var(--text); text-decoration: underline; }
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Your Name</span>
+      </div>
+      <nav class="toplinks" aria-label="Page">
+        <a href="#offer">Offer</a>
+        <a href="#fit">Fit</a>
+        <a href="#plan">Pipeline Plan</a>
+        <a href="#faqs">FAQs</a>
+      </nav>
+    </div>
 
-<h1>Welcome</h1>
-<p>This is my website.</p>
+    <main class="memo">
+      <div class="memoInner">
 
+        <p class="kicker">Done-for-you business development</p>
+        <h1>Thoughtful business development for nonprofit-serving firms</h1>
+        <p class="lead">
+          I take responsibility for initiating and following up on outreach—so business development
+          actually happens every week.
+        </p>
+
+        <div class="actions">
+          <!-- Replace # with your calendar link -->
+          <a class="btn btnPrimary" href="#" id="calendarLink">
+            Schedule your 30-minute session <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn btnSecondary" href="#plan">See the 60-day Pipeline Plan</a>
+        </div>
+        <p class="tinyNote">
+          The conversation and plan are yours with my compliments, regardless of who implements it.
+        </p>
+
+        <hr />
+
+        <section aria-labelledby="keep-reading">
+          <div class="sectionTitle">
+            <span class="sectionMark" aria-hidden="true"></span>
+            <h2 id="keep-reading">Keep reading if…</h2>
+          </div>
+          <ul>
+            <li>You know exactly who you need to talk to—but business development keeps getting pushed aside.</li>
+            <li>You need higher-value clients, but no one internally has the time (or appetite) to lead that outreach consistently.</li>
+            <li>Your growth goals depend on conversations that haven’t started yet.</li>
+          </ul>
+        </section>
+
+        <section id="offer" aria-labelledby="offer-title">
+          <div class="sectionTitle" style="margin-top: 22px;">
+            <span class="sectionMark" aria-hidden="true"></span>
+            <h2 id="offer-title">More meetings with the right people—or you don’t pay</h2>
+          </div>
+
+          <div class="callout">
+            <ul>
+              <li>Straightforward 60-day engagements with custom meeting target</li>
+              <li>Hybrid retainer + performance-based compensation</li>
+              <li><strong>Results guarantee</strong>—if no meetings take place in the first 30 days, you pay nothing</li>
+            </ul>
+          </div>
+
+          <p style="color: var(--muted);">
+            This is targeted, relationship-aware outreach designed for long-term partnerships and real revenue—not
+            high-volume automated lead gen.
+          </p>
+        </section>
+
+        <section aria-labelledby="why-help" style="margin-top: 22px;">
+          <div class="sectionTitle">
+            <span class="sectionMark" aria-hidden="true"></span>
+            <h2 id="why-help">Why I can help you</h2>
+          </div>
+          <p>
+            Since 2011, I’ve worked at the intersection of sales and marketing—both creating six-figure digital marketing
+            campaigns and closing half of a million dollars as a salesperson. At the same time, my passion took me deeper
+            into nonprofit work, both as a volunteer and a leader.
+          </p>
+          <p style="color: var(--muted);">
+            This means I’m uniquely prepared to bridge your growth goals with those of the nonprofit leaders you serve.
+          </p>
+        </section>
+
+        <section id="fit" aria-labelledby="fit-title" style="margin-top: 22px;">
+          <div class="grid2">
+            <div>
+              <div class="sectionTitle">
+                <span class="sectionMark" aria-hidden="true"></span>
+                <h2 id="fit-title">Who this is for</h2>
+              </div>
+              <p><strong>If you’re a professional services firm dedicated to partnering with nonprofit organizations, we may be a good fit.</strong></p>
+              <div class="pillRow" aria-label="Ideal partners">
+                <span class="pill">Strategy</span>
+                <span class="pill">Fundraising</span>
+                <span class="pill">Grant writing</span>
+                <span class="pill">Communications</span>
+                <span class="pill">Consulting</span>
+                <span class="pill">Operations</span>
+                <span class="pill">Leadership</span>
+                <span class="pill">Accounting</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="sectionTitle">
+                <span class="sectionMark" aria-hidden="true"></span>
+                <h2>Where this leads</h2>
+              </div>
+              <ul>
+                <li>You’re meeting regularly with nonprofit leaders you used to hope would respond.</li>
+                <li>New clients and partnerships form with intention, not luck.</li>
+                <li>The hardest part—initiating outreach and follow-up—is finally handled.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="plan" aria-labelledby="plan-title" style="margin-top: 22px;">
+          <div class="sectionTitle">
+            <span class="sectionMark" aria-hidden="true"></span>
+            <h2 id="plan-title">Next step: Your 60-day Pipeline Plan</h2>
+          </div>
+
+          <p>Let’s meet and answer these three questions together:</p>
+          <ul>
+            <li>What kind of nonprofit leaders do you want more meetings with?</li>
+            <li>How many meetings do you want over the next 60 days?</li>
+            <li>How can we optimize channels, messaging, and cadence to achieve that goal?</li>
+          </ul>
+
+          <div class="callout" style="background:#fff; border-color: var(--border);">
+            <p style="margin:0;">
+              <strong>I’ll prepare the results of our chat into an actionable Pipeline Plan.</strong>
+              The conversation and the plan are yours with my compliments, regardless of who implements it.
+            </p>
+          </div>
+
+          <div class="actions" style="margin-top: 14px;">
+            <a class="btn btnPrimary" href="#" id="calendarLink2">Schedule your 30-minute pipeline planning session</a>
+            <a class="btn btnSecondary" href="#faqs">Read FAQs</a>
+          </div>
+
+          <p class="tinyNote">Replace the button link with your calendar URL (Calendly, Google Calendar appointment schedule, etc.).</p>
+        </section>
+
+        <hr />
+
+        <section id="faqs" aria-labelledby="faq-title">
+          <div class="sectionTitle">
+            <span class="sectionMark" aria-hidden="true"></span>
+            <h2 id="faq-title">FAQs</h2>
+          </div>
+
+          <details>
+            <summary>
+              How will we evaluate results?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="faqBody">
+              We agree upfront on a clear, measurable target, and review progress regularly during a 60-day engagement.
+              Iteration is expected, especially early on as things ramp up. Results typically skew later in the cycle as
+              targeting, messaging, and cadence gain traction.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              How are you compensated?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="faqBody">
+              Compensation is typically split between a modest monthly retainer and a performance-based component tied to results
+              (most often defined by meetings where the right contact shows up). Revenue-based commissions are possible in some cases.
+              I structure compensation so it fits your firm’s economics and delivers a meaningful return.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Will I be locked into a contract?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="faqBody">
+              No. Engagements typically run in 60-day intervals and are renewable, with an early-exit option built in.
+              This keeps the arrangement low-risk and performance-oriented.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Are you an appointment-setter?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="faqBody">
+              No. I’m an experienced sales and marketing consultant with dual fluency in performance-driven sales and nonprofit liaising.
+              I don’t do high-volume, automated prospecting. I focus on lower-volume, higher-touch outreach where targeting, tone,
+              and judgment matter as much as outcomes. Think of me as a high-end door-opener and conversation-starter—well suited for
+              purpose-driven revenue generation.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              What are your outreach methods?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="faqBody">
+              Methods vary by context, but typically include thoughtful phone calls, highly targeted emails, coordinated meeting scheduling,
+              and—in some cases—live networking or in-person visits. The emphasis is always on relevance, discretion, and follow-through.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Are you available for consulting?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="faqBody">
+              Yes, on a limited basis. I consult on areas that directly support ultimate outcomes, such as messaging, offers and door-openers,
+              targeting, packaging and pricing, lifecycle operations, and re-engaging existing accounts or past prospects.
+              Consulting is selective and designed to improve real-world results.
+            </div>
+          </details>
+        </section>
+
+        <hr />
+
+        <section aria-label="Final call to action">
+          <div class="grid2">
+            <div>
+              <h2 style="margin:0 0 6px;">Ready to make business development happen weekly?</h2>
+              <p style="margin:0; color:var(--muted);">
+                Book a 30-minute planning session. You’ll leave with a clear target, a realistic cadence, and a concrete 60-day plan.
+              </p>
+            </div>
+            <div class="actions" style="justify-content:flex-end; margin: 6px 0 0;">
+              <a class="btn btnPrimary" href="#" id="calendarLink3">Schedule the session</a>
+            </div>
+          </div>
+        </section>
+
+        <div class="footer">
+          <div>© <span id="year"></span> Your Name</div>
+          <div>
+            <a href="mailto:you@example.com">you@example.com</a> ·
+            <a href="#" aria-label="LinkedIn profile">LinkedIn</a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Tiny only: set year + wire calendar link in one spot
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Replace this with your real calendar URL once you have it:
+    const CALENDAR_URL = "#"; // e.g., "https://calendly.com/yourname/pipeline"
+
+    ["calendarLink","calendarLink2","calendarLink3"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.setAttribute("href", CALENDAR_URL);
+      el.setAttribute("rel", "noopener");
+    });
+  </script>
 </body>
 </html>
