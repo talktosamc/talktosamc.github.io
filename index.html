@@ -51,7 +51,7 @@
       text-underline-offset:3px;
     }
 
-    a:hover{
+    a:not(.btn):hover{
       color:var(--green-hover);
     }
 
@@ -238,9 +238,6 @@
       color:#ffffff;
     }
 
-    .btn-dark:hover{
-      background:#111820;
-    }
 
 
     /* CTA */
@@ -259,10 +256,11 @@
       border:none;
     }
     
-    .btn:hover{
+    .btn:not(.btn-dark):hover{
       background:var(--green-hover);
       color:#ffffff;
     }
+
 
     /* FAQ */
 
@@ -447,8 +445,6 @@
 <!-- PLAN (GREEN) -->
 
 <section id="pipeline-plan" class="section--dark">
-
-<section class="section--dark">
   <div class="container">
 
     <h2>Next step: Your 60-day Pipeline Plan</h2>
@@ -467,7 +463,7 @@
     </p>
 
     <div class="cta">
-      <a class="btn" href="#">Schedule your 30-minute pipeline planning session</a>
+      <a class="btn" href="https://talktosamc.youcanbook.me/">Schedule your 30-minute Pipeline Planning Session</a>
     </div>
 
   </div>
